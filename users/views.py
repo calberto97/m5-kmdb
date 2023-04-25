@@ -1,7 +1,4 @@
 from rest_framework.generics import ListCreateAPIView
-from rest_framework.pagination import PageNumberPagination
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from rest_framework.views import APIView, Request, Response, status
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from users.permissions import IsAdminOrPostOnly

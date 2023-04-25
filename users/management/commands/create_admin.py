@@ -7,17 +7,12 @@ class Command(BaseCommand):
         parser.add_argument("--username", type=str, help="Define a username")
         parser.add_argument("--password", type=str, help="Define a password")
         parser.add_argument("--email", type=str, help="Define an email")
-        # return super().add_arguments(parser)
 
     def handle(self, *args, **kwargs) -> str:
         help = "Creates an admin user"
         my_username = kwargs["username"] or "admin"
         my_password = kwargs["password"] or "admin1234"
         my_email = kwargs["email"] or "admin@example.com"
-
-        # my_username = username if username else "admin"
-        # my_password = password if password else "admin1234"
-        # my_email = email if email else "admin@example.com"
 
         check_username = User.objects.filter(username=my_username).first()
         check_email = User.objects.filter(email=my_email).first()
@@ -30,7 +25,6 @@ class Command(BaseCommand):
         if check_email:
             raise CommandError(f"Email `{check_email.email}` already taken.")
 
-        # dict = {"username": my_username, "password": my_password, "email": my_email}
         User.objects.create_superuser(
             username=my_username,
             password=my_password,
