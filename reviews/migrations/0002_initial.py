@@ -11,17 +11,27 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ("movies", "0001_initial"),
+        ("movies", "0002_initial"),
+        ("reviews", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name="movie",
-            name="user",
+            model_name="review",
+            name="critic",
             field=models.ForeignKey(
                 on_delete=django.db.models.deletion.PROTECT,
-                related_name="movies",
+                related_name="reviews",
                 to=settings.AUTH_USER_MODEL,
+            ),
+        ),
+        migrations.AddField(
+            model_name="review",
+            name="movie",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT,
+                related_name="reviews",
+                to="movies.movie",
             ),
         ),
     ]
