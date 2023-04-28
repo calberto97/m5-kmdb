@@ -3,7 +3,6 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from movies.models import Movie
 from movies.permissions import IsAdminOrReadOnly
 from movies.serializers import MovieSerializer
-import ipdb
 
 
 class MovieView(ListCreateAPIView):
@@ -14,7 +13,6 @@ class MovieView(ListCreateAPIView):
     serializer_class = MovieSerializer
 
     def perform_create(self, serializer):
-        # ipdb.set_trace()
         serializer.save(user=self.request.user, genres=self.request.data['genres'])
 
     ...

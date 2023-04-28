@@ -15,16 +15,6 @@ class CriticSerializer(serializers.ModelSerializer):
 class ReviewSerializer(serializers.ModelSerializer):
     critic = CriticSerializer(required=False)
 
-    # def create(self, validated_data):
-    #     movie_id = validated_data.pop("movie_id")
-    #     # try:
-    #     # movie = Movie.objects.get(id=movie_id)
-    #     return Review.objects.create(**validated_data, movie_id=movie_id)
-    # except Movie.DoesNotExist:
-    # raise BaseException('aodskodiaodiasodaosdiasodaso')
-
-    # movie = MovieSerializer()
-
     class Meta:
         model = Review
         fields = ["id", "stars", "review", "critic", "spoilers", "movie_id"]
